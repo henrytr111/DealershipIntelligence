@@ -1,33 +1,146 @@
-# Python
+# ================================
+# Dealership Revenue Intelligence
+# .gitignore (Python + DS + MLOps)
+# ================================
+
+# --- Data (DO NOT COMMIT RAW/PROCESSED) ---
+/data/raw/*
+/data/processed/*
+!/data/raw/.gitkeep
+!/data/processed/.gitkeep
+!/data/sample/.gitkeep
+!/data/README.md
+
+# Optional: if you want to allow small anonymized samples
+# (keep them tiny and PII-free)
+/data/sample/*.parquet
+/data/sample/*.feather
+/data/sample/*.pkl
+/data/sample/*.joblib
+
+# --- Large/Derived data artifacts (generally do not commit) ---
+*.parquet
+*.feather
+*.arrow
+*.pkl
+*.pickle
+*.joblib
+*.dill
+*.h5
+*.hdf5
+*.npz
+*.npy
+*.csv.gz
+*.tsv.gz
+*.jsonl.gz
+*.zip
+*.7z
+*.tar
+*.tar.gz
+*.tgz
+*.rar
+
+# --- Databases / local storage ---
+*.db
+*.sqlite
+*.sqlite3
+*.duckdb
+
+# --- Secrets / credentials ---
+.env
+.env.*
+*.key
+*.pem
+*.p12
+*.pfx
+*credentials*
+*secret*
+*token*
+*apikey*
+*api_key*
+*service_account*
+**/secrets/**
+**/secret/**
+
+# --- Python bytecode / caches ---
 __pycache__/
 *.py[cod]
-*.pyo
-*.pyd
-*.so
+*$py.class
+
+# --- Virtual environments ---
 .venv/
 venv/
-ENV/
 env/
-pip-wheel-metadata/
-*.egg-info/
-dist/
+ENV/
+.python-version
+
+# --- Dependency/build outputs ---
 build/
+dist/
+*.egg-info/
+.eggs/
 
-# Jupyter
-.ipynb_checkpoints/
-
-# OS/editor
-.DS_Store
-.vscode/
-.idea/
-
-# Data (do NOT commit raw data)
-data/raw/
-data/interim/
-data/processed/
-*.parquet
-*.csv
-*.xlsx
-
-# Logs
+# --- Logs ---
 *.log
+logs/
+**/logs/
+
+# --- Jupyter / IPython ---
+.ipynb_checkpoints/
+.profile_default/
+.ipython/
+
+# --- Notebooks: optional (uncomment if you do NOT want to commit notebooks) ---
+# notebooks/*.ipynb
+
+# --- Testing / coverage ---
+.pytest_cache/
+.coverage
+.coverage.*
+htmlcov/
+.tox/
+.nox/
+.mypy_cache/
+.pyre/
+.ruff_cache/
+
+# --- Static analysis / type checker caches ---
+.pytype/
+.pyright/
+
+# --- ML experiment tracking / artifacts ---
+mlruns/
+**/mlruns/
+wandb/
+**/wandb/
+catboost_info/
+lightning_logs/
+tensorboard/
+**/runs/
+
+# --- Streamlit / Dash ---
+.streamlit/secrets.toml
+
+# --- VS Code ---
+.vscode/
+!.vscode/extensions.json
+!.vscode/settings.json
+!.vscode/launch.json
+!.vscode/tasks.json
+
+# --- JetBrains / other IDEs ---
+.idea/
+*.iml
+
+# --- macOS / Windows ---
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# --- Docker / local overrides ---
+docker-compose.override.yml
+
+# --- Reports (optional) ---
+# If you generate PDFs/HTML locally and don’t want to commit them, uncomment:
+# reports/*.pdf
+# reports/*.html
