@@ -3,10 +3,10 @@
 ## 1) Forecasting
 Goal: forecast near-term demand for planning.
 
-Default proposals (confirm if needed):
+Defaults:
 - Targets: daily revenue and daily units
 - Horizon: 14 days
-- Evaluation: rolling time-series backtest
+- Evaluation: rolling time-series backtest (train on earlier dates, test on later dates)
 
 Baselines:
 - seasonal naive (same weekday last week)
@@ -25,10 +25,12 @@ Model:
 - regression predicting `Sale Price`
 
 Anomaly score:
-- absolute residual: `|actual - expected|`
+- residual = `Sale Price - expected_price`
+- anomaly_score = `abs(residual)`
 
-Default proposal (confirm if needed):
-- flag top 1% by absolute residual
+Defaults (flag as anomaly if both are true):
+- top 1% by `anomaly_score` within each calendar month
+- `anomaly_score >= 2000` USD
 
 Output:
 - write results to `mart.anomalies`

@@ -19,7 +19,15 @@ One row represents one sale transaction.
 - `commission_error = commission_earned - commission_expected`
 - Optional: `customer_id` (hashed) if needed for internal grouping (never display raw name)
 
-## Defaults to confirm
-- Commission reconciliation tolerance (default proposal):
-  `abs(commission_error) <= max(1.0, 0.01 * commission_expected)`
-- Duplicate definition (default proposal): exact duplicate rows across all columns
+### Commission reconciliation tolerance 
+Let:
+- `expected_commission = sale_price * commission_rate`
+- `error = commission_earned - expected_commission`
+
+Pass rule:
+- `abs(error) <= max(1.0, 0.005 * expected_commission)`
+
+## Duplicate definition 
+- Duplicates are exact full-row duplicates across all original raw fields:
+  `Date, Salesperson, Customer Name, Car Make, Car Model, Car Year, Sale Price, Commission Rate, Commission Earned`.
+- Action: keep the first occurrence, drop the rest, and report how many were removed.

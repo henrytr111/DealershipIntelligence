@@ -10,13 +10,17 @@ We run checks after loading `raw.sales` and after building `clean.fact_sales`.
 4) `Commission Rate` within [0.05, 0.15]
 
 ## Reconciliation check (warn or fail based on threshold)
-Commission should reconcile within tolerance:
-- `commission_expected = sale_price * commission_rate`
-- Default proposal:
-  `abs(commission_earned - commission_expected) <= max(1.0, 0.01 * commission_expected)`
+Commission should reconcile within tolerance.
+
+Define:
+- `expected_commission = sale_price * commission_rate`
+- `error = commission_earned - expected_commission`
+
+Pass rule (default):
+- `abs(error) <= max(1.0, 0.005 * expected_commission)`
 
 ## Duplicate handling
-- Identify exact duplicate rows across all columns.
+- Identify exact full-row duplicates across all original raw fields.
 - Keep the first occurrence; record the number removed.
 
 ## Reporting
